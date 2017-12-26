@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.urls import resolve
 
 from django.test import TestCase
-from .views import signup
+from ..views import signup
 
 
 # Create your tests here.

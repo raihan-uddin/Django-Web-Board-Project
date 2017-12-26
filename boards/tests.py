@@ -90,7 +90,7 @@ class NewTopicTest(TestCase):
         url = reverse('new_topic', kwargs={'pk': 1})
         data = {
             'subject': 'Test',
-            'message': 'this is unit test'
+            'message': 'this is unit tests'
         }
         response = self.client.post(url, data)
         self.assertTrue(Topic.objects.exists())
