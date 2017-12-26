@@ -34,6 +34,7 @@ class SuccessfulSignUpTests(TestCase):
         url = reverse('signup')
         data = {
             'username': 'raihan',
+            'email': 'raihan@gmail.com',
             'password1': '1234567@a',
             'password2': '1234567@a'
         }
