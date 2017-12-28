@@ -3,9 +3,9 @@ from django.core.urlresolvers import reverse
 from django.urls import resolve
 from django.test import TestCase
 
-from boards.models import Board, Topic, Post
-from .views import home, board_topics, new_topic
-from .forms import NewTopicForm
+from ..models import Board, Topic, Post
+from ..views import home, board_topics, new_topic
+from ..forms import NewTopicForm
 
 
 # Create your tests here.
