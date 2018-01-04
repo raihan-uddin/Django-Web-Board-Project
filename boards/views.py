@@ -28,12 +28,12 @@ def new_topic(request, pk):
             topic.board = board
             topic.starter = request.user
             topic.save()
-            post = Post.objects.create(
+            Post.objects.create(
                 message=form.cleaned_data.get('message'),
                 topic=topic,
                 created_by=request.user
             )
-            return redirect('board_topics', pk=pk, topic_pk=topic.pk)
+            return redirect('topic_posts', pk=pk, topic_pk=topic.pk)
     else:
         form = NewTopicForm()
 
