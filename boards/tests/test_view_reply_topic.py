@@ -35,7 +35,7 @@ class ReplyTopicTests(ReplyTopicTestCase):
         self.client.login(username=self.username, password=self.password)
         self.response = self.client.get(self.url)
 
-    def status_code(self):
+    def test_status_code(self):
         self.assertEquals(self.response.status_code, 200)
 
     def test_view_function(self):
