@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse, resolve
 
-from ..forms import PostForm
+from boards.forms import PostForm
 from ..models import Board, Post, Topic
 from ..views import reply_topic
 
@@ -38,16 +38,16 @@ class ReplyTopicTests(ReplyTopicTestCase):
     def status_code(self):
         self.assertEquals(self.response.status_code, 200)
 
-    # def test_view_function(self):
-    #     view = resolve('/boards/1/topics/1/reply/')
-    #     self.assertContains(view.func, reply_topic)
+    def test_view_function(self):
+        view = resolve('/boards/1/topics/1/reply/')
+        self.assertEquals(view.func, reply_topic)
 
     def test_csrf(self):
         self.assertContains(self.response, 'csrfmiddlewaretoken')
 
-    # def test_contains_form(self):
-    #     form = self.response.context.get('form')
-    #     self.assertIsInstance(form, PostForm)
+    def test_contains_form(self):
+        form = self.response.context.get('form')
+        self.assertIsInstance(form, PostForm)
 
     def test_form_inputs(self):
         """
