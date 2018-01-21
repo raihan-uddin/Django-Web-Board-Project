@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.urls import resolve
 
 from boards.models import Board
-from boards.views import board_topics
+from boards.views import TopicListView
 
 
 class BoardTopicsTests(TestCase):
@@ -22,7 +22,7 @@ class BoardTopicsTests(TestCase):
 
     def test_board_topics_url_resolves_board_topics_view(self):
         view = resolve('/boards/1/')
-        self.assertEqual(view.func, board_topics)
+        self.assertEqual(view.func.view_class, TopicListView)
 
     def test_board_topics_view_contains_navigation_links(self):
         board_topics_url = reverse('board_topics', kwargs={'pk':1})
