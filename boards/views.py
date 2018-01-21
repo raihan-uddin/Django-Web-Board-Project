@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
@@ -20,7 +21,20 @@ class BoardListView(ListView):
 
 def board_topics(request, pk):
     board = get_object_or_404(Board, pk=pk)
-    topics = board.topics.order_by('-last_update').annotate(replies=Count('posts') - 1)
+    queryset = board.topics.order_by('-last_update').annotate(replies=Count('posts') - 1)
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(queryset, 20)
+
+    try:
+        topics = paginator.page(page)
+    except PageNotAnInteger:
+        # fallback to the first page
+        topics = paginator.page(1)
+    except EmptyPage:
+        # probably the user tried to add a page number
+        # in the url, so we fallback to the last page
+        topics = paginator.page(paginator.num_pages)
     return render(request, 'topics.html', {'board': board, 'topics': topics})
 
 
