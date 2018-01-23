@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load humanize %}
+
 {% block title %}
     {{ board.name }} - {{block.super }}
 {% endblock %}
@@ -29,7 +32,7 @@
                     <td>{{ topic.starter.username }}</td>
                     <td>{{ topic.replies }}</td>
                     <td>{{ topic.views }}</td>
-                    <td>{{ topic.last_update }}</td>
+                    <td>{{ topic.last_update|naturaltime }}</td>
                 </tr>
             {% endfor %}
         </tbody>
