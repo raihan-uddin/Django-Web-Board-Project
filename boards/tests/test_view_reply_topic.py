@@ -45,9 +45,9 @@ class ReplyTopicTests(ReplyTopicTestCase):
     def test_csrf(self):
         self.assertContains(self.response, 'csrfmiddlewaretoken')
 
-    # def test_contains_form(self):
-    #     form = self.response.context.get('form')
-    #     self.assertIsInstance(form, PostForm)
+    def test_contains_form(self):
+        form = self.response.context.get('form')
+        self.assertIsInstance(form, PostForm)
 
     def test_form_inputs(self):
         """
@@ -67,7 +67,8 @@ class SuccessfulReplyTopicTests(ReplyTopicTestCase):
         """
         A valid form submission should redirect the user
         """
-        topic_posts_url = reverse('topic_posts', kwargs={'pk': self.board.pk, 'topic_pk': self.topic.pk})
+        url = reverse('topic_posts', kwargs={'pk': self.board.pk, 'topic_pk': self.topic.pk})
+        topic_posts_url = '{url}?page=1#2'.format(url=url)
         self.assertRedirects(self.response, topic_posts_url)
 
     def test_reply_created(self):
