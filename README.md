@@ -14,7 +14,7 @@ Figure 1: Use case diagram of the core functionalities offered by the Web Board
 
 Figure 2: Draft of the class diagram of the Web Board
 
-![Class Diagram Screenshots](class_diagrams/basic-class-diagram.png)
+![Class Diagram Screenshots](class_diagrams/class-diagram.png)
 
 
 Figure 3: Class diagram emphasizing the relationship between the classes (models)
